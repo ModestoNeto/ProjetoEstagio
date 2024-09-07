@@ -23,9 +23,6 @@ __pycache__/
 *.swp
 *.swo
 
-# Arquivos de banco de dados SQLite
-db.sqlite3
-db.sqlite3-journal
 
 # Arquivos do sistema operacional
 .DS_Store
