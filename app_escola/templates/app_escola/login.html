@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <!-- Carregar os arquivos estáticos -->
+    {% load static %}
+
+    <!-- Incluir o arquivo CSS -->
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Login</h1> <!-- O título agora fica acima dos campos -->
+
+        <form method="post">
+            {% csrf_token %}
+            <input type="email" name="email" id="email" placeholder="Digite seu e-mail" required>
+            <input type="password" name="senha" id="senha" placeholder="Digite sua senha" required>
+
+            <button type="submit">Entrar</button>
+        </form>
+    </div>
+</body>
+</html>
