@@ -1,0 +1,21 @@
+# Ambiente Virtual
+venv/
+.env
+
+# Arquivos Python
+*.pyc
+__pycache__/
+
+# Arquivos de banco de dados locais
+db.sqlite3
+
+# Arquivos estáticos
+/static/
+/media/
+
+# Arquivos de migração
+*/migrations/*.py
+!*/migrations/__init__.py
+
+# VSCode
+.vscode/
