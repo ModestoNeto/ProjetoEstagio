@@ -1,12 +1,15 @@
+from django import forms
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
-from .forms import AlunoForm, Aluno, LoginForm
+from .forms import AlunoForm, LoginForm
+from .models import Aluno
 
 def cadastrar_aluno(request):
     if request.method == 'POST':
         form = AlunoForm(request.POST)
         if form.is_valid():
-            form.save()  # Salva o novo aluno no banco de dados
+            aluno = form.save(commit=False)  # Não salvar ainda para processar o CPF
+            aluno.save()  # O CPF será salvo como um token no banco de dados
             return redirect('lista_alunos')  # Redireciona para a página de lista de alunos
     else:
         form = AlunoForm()
@@ -15,10 +18,9 @@ def cadastrar_aluno(request):
 
 def lista_alunos(request):
     alunos = Aluno.objects.all()  # Pega todos os alunos cadastrados no banco
+    for aluno in alunos:
+        aluno.cpf_decrypted = aluno.get_decrypted_cpf()  # Descriptografa o CPF para exibição
     return render(request, 'app_escola/lista_alunos.html', {'alunos': alunos})
-
-
-
 
 def login_view(request):
     if request.method == 'POST':
@@ -36,7 +38,6 @@ def login_view(request):
         form = LoginForm()
 
     return render(request, 'app_escola/login.html', {'form': form})
-
 
 def home(request):
     return render(request, 'app_escola/home.html')

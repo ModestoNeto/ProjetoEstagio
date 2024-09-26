@@ -1,21 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Alunos Cadastrados</title>
-</head>
-<body>
-    <h1>Lista de Alunos Cadastrados</h1>
-
-    <ul>
+<h2>Lista de Alunos</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>Telefone</th>
+            <th>Endereço</th>
+        </tr>
+    </thead>
+    <tbody>
         {% for aluno in alunos %}
-            <li>{{ aluno.nome }} - CPF: {{ aluno.cpf }} - Telefone: {{ aluno.telefone }}</li>
-        {% empty %}
-            <li>Nenhum aluno cadastrado.</li>
+        <tr>
+            <td>{{ aluno.nome }}</td>
+            <td>{{ aluno.cpf_decrypted }}</td>  <!-- Exibe o CPF descriptografado -->
+            <td>{{ aluno.telefone }}</td>
+            <td>{{ aluno.endereco }}</td>
+        </tr>
         {% endfor %}
-    </ul>
-
-    <a href="{% url 'cadastrar_aluno' %}">Cadastrar novo aluno</a>
-</body>
-</html>
+    </tbody>
+</table>

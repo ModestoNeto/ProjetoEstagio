@@ -1,8 +1,23 @@
 from pathlib import Path
+import os
+from dotenv import load_dotenv
+from cryptography.fernet import Fernet
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Carregar as variáveis do arquivo .env
+load_dotenv()
+
+# Carregar a chave de criptografia a partir do .env
+CRYPTO_KEY = os.getenv('CRYPTO_KEY')
+
+# Verifique se a chave foi carregada corretamente
+if not CRYPTO_KEY:
+    raise ValueError("A chave de criptografia (CRYPTO_KEY) não foi encontrada no arquivo .env")
+
+# Instanciar o Fernet com a chave carregada
+cipher_suite = Fernet(CRYPTO_KEY)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -15,9 +30,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -58,17 +71,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'setup.wsgi.application'
 
-# settings.py
-
 # Diretório onde os arquivos estáticos serão armazenados
 STATIC_URL = '/static/'
 
-# Diretórios onde o Django buscará arquivos estáticos
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
 # Database
-# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -76,10 +84,7 @@ DATABASES = {
     }
 }
 
-
 # Password validation
-# https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -95,10 +100,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
-# https://docs.djangoproject.com/en/5.1/topics/i18n/
-
 LANGUAGE_CODE = 'pt-br'
 
 TIME_ZONE = 'America/Fortaleza'
@@ -107,13 +109,8 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.1/howto/static-files/
-
 STATIC_URL = 'static/'
 
 # Default primary key field type
-# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
