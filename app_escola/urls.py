@@ -1,18 +1,13 @@
 from django.urls import path
-from .views import cadastrar_aluno, lista_alunos, login_view, home, agendamento_view, diario_turma_view, faltas_view,logout_view, home
+from . import views
 
 urlpatterns = [
-    path('cadastrar/', cadastrar_aluno, name='cadastrar_aluno'),
-    path('alunos/', lista_alunos, name='lista_alunos'),
-    path('login/', login_view, name='login'),
-    path('home/', home, name='home'),
-    path('agendamento/', agendamento_view, name='agendamento'),
-    path('diario-turma/', diario_turma_view, name='diario_turma'),
-    path('faltas/', faltas_view, name='faltas'),
-    path('logout/', logout_view, name='logout'),
-    path('', home, name='home'),
+    path('', views.home, name='home'),                    # Página inicial
+    path('cadastrar/', views.cadastrar_aluno, name='cadastrar_aluno'),  # Página de cadastro de alunos
+    path('alunos/', views.lista_alunos, name='lista_alunos'),           # Página para listar alunos
+    path('login/', views.login_view, name='login'),                    # Página de login
+    path('logout/', views.logout_view, name='logout'),                 # Página de logout
+    path('agendamento/', views.agendamento_view, name='agendamento'),  # Página de agendamento
+    path('diario/', views.diario_turma_view, name='diario_turma'),     # Página de diário de turma
+    path('faltas/', views.faltas_view, name='faltas'),                 # Página de controle de faltas
 ]
-
-
-
-

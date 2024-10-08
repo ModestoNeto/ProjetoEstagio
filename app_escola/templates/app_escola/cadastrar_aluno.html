@@ -1,44 +1,28 @@
+{% load static %}
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Aluno</title>
-    {% load static %}
+    <title>Cadastrar Aluno</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
-        
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <img src="{% static 'images/home-icon.png' %}" alt="Home" class="home-icon">
-            <h1>Cadastro de Aluno</h1>
-        </div>
-        <form action="{% url 'cadastrar_aluno' %}" method="POST">
+    <header>
+        <h1>Cadastrar Novo Aluno</h1>
+    </header>
+
+    <div class="content">
+        <form method="POST">
             {% csrf_token %}
-            <label for="nome">Digite o nome do aluno</label>
-            <input type="text" id="nome" name="nome_aluno" required>
-
-            <label for="cpf">Digite o CPF do aluno</label>
-            <input type="text" id="cpf" name="cpf_aluno" required>
-
-            <label for="endereco">Digite o endereço do aluno</label>
-            <input type="text" id="endereco" name="endereco_aluno" required>
-
-            <label for="telefone">Informe o número para contato</label>
-            <input type="text" id="telefone" name="telefone_aluno" required>
-
-            <div class="gender-options">
-                <label>Selecione o gênero:</label>
-                <label><input type="radio" name="genero" value="masculino" required> Masculino</label>
-                <label><input type="radio" name="genero" value="feminino" required> Feminino</label>
-            </div>
-
-            <button type="submit" class="submit-btn">Cadastrar o Aluno</button>
+            {{ form.as_p }}
+            <button type="submit" class="btn">Cadastrar Aluno</button>
         </form>
     </div>
-    <a href="{% url 'cadastrar_aluno' %}">Cadastrar novo aluno</a>
+
+    <footer>
+        <p>&copy; 2024 Sistema de Gerenciamento Escolar. Todos os direitos reservados.</p>
+    </footer>
 </body>
 </html>

@@ -1,21 +1,49 @@
-<h2>Lista de Alunos</h2>
-<table>
-    <thead>
-        <tr>
-            <th>Nome</th>
-            <th>CPF</th>
-            <th>Telefone</th>
-            <th>Endereço</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for aluno in alunos %}
-        <tr>
-            <td>{{ aluno.nome }}</td>
-            <td>{{ aluno.cpf_decrypted }}</td>  <!-- Exibe o CPF descriptografado -->
-            <td>{{ aluno.telefone }}</td>
-            <td>{{ aluno.endereco }}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Alunos</title>
+    <!-- Referenciando o style.css -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <h1>Lista de Alunos Cadastrados</h1>
+    </header>
+
+    <!-- Tabela de alunos -->
+    <div class="content">
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>CPF</th>
+                    <th>Telefone</th>
+                    <th>Endereço</th>
+                    <th>Gênero</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for aluno in alunos %}
+                <tr>
+                    <td>{{ aluno.nome }}</td>
+                    <td>{{ aluno.cpf_decrypted }}</td>
+                    <td>{{ aluno.telefone }}</td>
+                    <td>{{ aluno.endereco }}</td>
+                    <td>{{ aluno.genero }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>&copy; 2024 Sistema de Gerenciamento Escolar. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>

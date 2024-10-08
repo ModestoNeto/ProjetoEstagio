@@ -1,27 +1,37 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-
-    <!-- Carregar os arquivos estáticos -->
-    {% load static %}
-
-    <!-- Incluir o arquivo CSS -->
-    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <!-- Referenciando o style.css -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <div class="container">
-        <h1>Login</h1> <!-- O título agora fica acima dos campos -->
+    <!-- Cabeçalho -->
+    <header>
+        <h1>Login</h1>
+    </header>
 
-        <form method="post">
+    <!-- Formulário de Login -->
+    <div class="content">
+        <form method="POST">
             {% csrf_token %}
-            <input type="email" name="email" id="email" placeholder="Digite seu e-mail" required>
-            <input type="password" name="senha" id="senha" placeholder="Digite sua senha" required>
+            <label for="username">Usuário:</label>
+            <input type="text" id="username" name="username" required>
 
-            <button type="submit">Entrar</button>
+            <label for="password">Senha:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit" class="btn">Login</button>
         </form>
     </div>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>&copy; 2024 Sistema de Gerenciamento Escolar. Todos os direitos reservados.</p>
+    </footer>
 </body>
 </html>

@@ -1,36 +1,29 @@
 from pathlib import Path
 import os
-from dotenv import load_dotenv
-from cryptography.fernet import Fernet
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+from dotenv import load_dotenv  # Importar `load_dotenv` para carregar variáveis do .env
+from cryptography.fernet import Fernet  # Importar Fernet para gerenciar a criptografia
 
 # Carregar as variáveis do arquivo .env
 load_dotenv()
 
-# Carregar a chave de criptografia a partir do .env
-CRYPTO_KEY = os.getenv('CRYPTO_KEY')
+# Caminho base do projeto
+BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Verifique se a chave foi carregada corretamente
-if not CRYPTO_KEY:
-    raise ValueError("A chave de criptografia (CRYPTO_KEY) não foi encontrada no arquivo .env")
+# Carregar a chave de criptografia e secret key a partir do .env
+SECRET_KEY = os.getenv('SECRET_KEY')  # Carregar a SECRET_KEY do .env
 
-# Instanciar o Fernet com a chave carregada
-cipher_suite = Fernet(CRYPTO_KEY)
+# Verificar se a chave foi carregada corretamente
+if not SECRET_KEY:
+    raise ValueError("A chave SECRET_KEY não foi encontrada no arquivo .env")
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
+# Usar a mesma SECRET_KEY para instanciar o Fernet (cripto)
+cipher_suite = Fernet(SECRET_KEY.encode())  # Cria a instância Fernet usando a mesma chave como bytes
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-yu(!=8y#((a9fuus)hej*zzb#$@%fe-93o2efq11on)gkd)9!('
+# Carregar outras variáveis de ambiente
+DEBUG = os.getenv('DEBUG', 'False') == 'True'  # Converte 'True'/'False' para valor booleano
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '127.0.0.1').split(',')  # Transforma a lista de hosts permitidos em lista Python
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
-# Application definition
+# Aplicativos instalados
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -38,9 +31,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app_escola.apps.AppEscolaConfig',
+    'app_escola',  # Aplicativo 'app_escola'
 ]
 
+# Middlewares do Django
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -51,12 +45,14 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# Configuração da URL principal
 ROOT_URLCONF = 'setup.urls'
 
+# Configuração dos templates
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],  # Diretório de templates (opcional)
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -69,14 +65,10 @@ TEMPLATES = [
     },
 ]
 
+# Configuração de WSGI para o projeto
 WSGI_APPLICATION = 'setup.wsgi.application'
 
-# Diretório onde os arquivos estáticos serão armazenados
-STATIC_URL = '/static/'
-
-STATICFILES_DIRS = [BASE_DIR / "static"]
-
-# Database
+# Configuração do banco de dados
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -84,7 +76,7 @@ DATABASES = {
     }
 }
 
-# Password validation
+# Validação de senha
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -100,17 +92,26 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# Internationalization
+# Configurações de localização e idioma
 LANGUAGE_CODE = 'pt-br'
-
 TIME_ZONE = 'America/Fortaleza'
-
 USE_I18N = True
-
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
-STATIC_URL = 'static/'
+# Configuração dos arquivos estáticos
+STATIC_URL = '/static/'  # URL usada para servir os arquivos estáticos no navegador
 
-# Default primary key field type
+# Diretórios para buscar arquivos estáticos (CSS, JS, imagens)
+STATICFILES_DIRS = [
+    BASE_DIR / 'app_escola' / 'static',  # Diretório onde estão os arquivos estáticos do app 'app_escola'
+]
+
+# Diretório onde os arquivos estáticos serão armazenados após executar `collectstatic`
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# Configuração do diretório de mídia (opcional)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+# Tipo de campo padrão para chaves primárias automáticas
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

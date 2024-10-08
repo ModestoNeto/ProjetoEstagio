@@ -1,12 +1,38 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agendamento</title>
+    <!-- Referenciando o style.css -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <h1>Agendamento</h1>
-    <p>Esta é a página de agendamento.</p>
+    <!-- Cabeçalho -->
+    <header>
+        <h1>Agendamento de Atividades</h1>
+    </header>
+
+    <div class="content">
+        <p>Agende as atividades da escola abaixo:</p>
+        <!-- Formulário de agendamento -->
+        <form method="POST">
+            {% csrf_token %}
+            <label for="evento">Nome do Evento:</label>
+            <input type="text" id="evento" name="evento" required>
+
+            <label for="data">Data do Evento:</label>
+            <input type="date" id="data" name="data" required>
+
+            <button type="submit" class="btn">Agendar</button>
+        </form>
+    </div>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>&copy; 2024 Sistema de Gerenciamento Escolar. Todos os direitos reservados.</p>
+    </footer>
 </body>
 </html>

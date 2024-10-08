@@ -2,8 +2,7 @@ from django.db import models
 from cryptography.fernet import Fernet
 import base64
 
-# Gerar a chave de criptografia - Isso deve ser armazenado em segurança
-# No ambiente de produção, use variáveis de ambiente para a chave
+# Gerar a chave de criptografia (deve ser armazenada em segurança)
 KEY = Fernet.generate_key()
 cipher_suite = Fernet(KEY)
 
