@@ -6,31 +6,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agendamento</title>
-    <!-- Referenciando o style.css -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <!-- Cabeçalho -->
     <header>
         <h1>Agendamento de Atividades</h1>
     </header>
 
-    <div class="content">
-        <p>Agende as atividades da escola abaixo:</p>
-        <!-- Formulário de agendamento -->
-        <form method="POST">
-            {% csrf_token %}
-            <label for="evento">Nome do Evento:</label>
-            <input type="text" id="evento" name="evento" required>
+    <div class="container">
+        <!-- Menu Lateral -->
+        <aside class="sidebar">
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'cadastrar_aluno' %}">Cadastrar Aluno</a></li>
+                <li><a href="{% url 'lista_alunos' %}">Lista de Alunos</a></li>
+                <li><a href="{% url 'diario_turma' %}">Diário de Turma</a></li>
+                <li><a href="{% url 'faltas' %}">Controle de Faltas</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+            </ul>
+        </aside>
 
-            <label for="data">Data do Evento:</label>
-            <input type="date" id="data" name="data" required>
-
-            <button type="submit" class="btn">Agendar</button>
-        </form>
+        <!-- Conteúdo Principal -->
+        <div class="main-content">
+            <h2>Próximos Agendamentos</h2>
+            <ul>
+                <li><strong>Reunião de Pais</strong> - 12/09/2024, 14:00h</li>
+                <li><strong>Palestra Motivacional</strong> - 15/09/2024, 10:00h</li>
+                <li><strong>Prova de Matemática</strong> - 18/09/2024, 08:00h</li>
+                <li><strong>Festa de Encerramento</strong> - 22/09/2024, 18:00h</li>
+            </ul>
+        </div>
     </div>
 
-    <!-- Rodapé -->
     <footer>
         <p>&copy; 2024 Sistema de Gerenciamento Escolar. Todos os direitos reservados.</p>
     </footer>

@@ -6,30 +6,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <!-- Referenciando o style.css -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <!-- Cabeçalho -->
     <header>
-        <h1>Login</h1>
+        <h1>Login do Sistema</h1>
     </header>
 
-    <!-- Formulário de Login -->
-    <div class="content">
-        <form method="POST">
-            {% csrf_token %}
-            <label for="username">Usuário:</label>
-            <input type="text" id="username" name="username" required>
+    <div class="container">
+        <!-- Menu Lateral -->
+        <aside class="sidebar">
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'cadastrar_aluno' %}">Cadastrar Aluno</a></li>
+                <li><a href="{% url 'lista_alunos' %}">Lista de Alunos</a></li>
+                <li><a href="{% url 'agendamento' %}">Agendamento</a></li>
+                <li><a href="{% url 'diario_turma' %}">Diário de Turma</a></li>
+                <li><a href="{% url 'faltas' %}">Controle de Faltas</a></li>
+            </ul>
+        </aside>
 
-            <label for="password">Senha:</label>
-            <input type="password" id="password" name="password" required>
+        <!-- Conteúdo Principal -->
+        <div class="main-content">
+            <h2>Faça o Login</h2>
+            <form method="post">
+                {% csrf_token %}
+                <label for="username">Nome de Usuário:</label>
+                <input type="text" id="username" name="username" required>
 
-            <button type="submit" class="btn">Login</button>
-        </form>
+                <label for="password">Senha:</label>
+                <input type="password" id="password" name="password" required>
+
+                <button type="submit" class="btn">Entrar</button>
+            </form>
+        </div>
     </div>
 
-    <!-- Rodapé -->
     <footer>
         <p>&copy; 2024 Sistema de Gerenciamento Escolar. Todos os direitos reservados.</p>
     </footer>

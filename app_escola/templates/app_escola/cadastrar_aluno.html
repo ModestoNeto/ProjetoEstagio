@@ -13,12 +13,54 @@
         <h1>Cadastrar Novo Aluno</h1>
     </header>
 
-    <div class="content">
-        <form method="POST">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn">Cadastrar Aluno</button>
-        </form>
+    <div class="container">
+        <!-- Menu Lateral -->
+        <aside class="sidebar">
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'lista_alunos' %}">Lista de Alunos</a></li>
+                <li><a href="{% url 'agendamento' %}">Agendamento</a></li>
+                <li><a href="{% url 'diario_turma' %}">Diário de Turma</a></li>
+                <li><a href="{% url 'faltas' %}">Controle de Faltas</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+            </ul>
+        </aside>
+
+        <!-- Conteúdo Principal -->
+        <div class="main-content">
+            <form method="post">
+                {% csrf_token %}
+                <h2>Formulário de Cadastro de Aluno</h2>
+
+                <label for="nome">Nome Completo:</label>
+                <input type="text" id="nome" name="nome" required>
+
+                <label for="cpf">CPF:</label>
+                <input type="text" id="cpf" name="cpf" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="data_nascimento">Data de Nascimento:</label>
+                <input type="date" id="data_nascimento" name="data_nascimento" required>
+
+                <label for="genero">Gênero:</label>
+                <select id="genero" name="genero">
+                    <option value="Masculino">Masculino</option>
+                    <option value="Feminino">Feminino</option>
+                    <option value="Outro">Outro</option>
+                </select>
+
+                <label for="turma">Turma:</label>
+                <select id="turma" name="turma">
+                    <option value="Turma A">Turma A</option>
+                    <option value="Turma B">Turma B</option>
+                    <option value="Turma C">Turma C</option>
+                </select>
+
+                <button type="submit" class="btn">Cadastrar Aluno</button>
+            </form>
+        </div>
     </div>
 
     <footer>

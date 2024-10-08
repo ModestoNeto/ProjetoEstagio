@@ -6,44 +6,108 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Alunos</title>
-    <!-- Referenciando o style.css -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <!-- Cabeçalho -->
     <header>
-        <h1>Lista de Alunos Cadastrados</h1>
+        <h1>Lista de Alunos</h1>
     </header>
 
-    <!-- Tabela de alunos -->
-    <div class="content">
-        <table>
-            <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>CPF</th>
-                    <th>Telefone</th>
-                    <th>Endereço</th>
-                    <th>Gênero</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for aluno in alunos %}
-                <tr>
-                    <td>{{ aluno.nome }}</td>
-                    <td>{{ aluno.cpf_decrypted }}</td>
-                    <td>{{ aluno.telefone }}</td>
-                    <td>{{ aluno.endereco }}</td>
-                    <td>{{ aluno.genero }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+    <div class="container">
+        <!-- Menu Lateral -->
+        <aside class="sidebar">
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'cadastrar_aluno' %}">Cadastrar Aluno</a></li>
+                <li><a href="{% url 'agendamento' %}">Agendamento</a></li>
+                <li><a href="{% url 'diario_turma' %}">Diário de Turma</a></li>
+                <li><a href="{% url 'faltas' %}">Controle de Faltas</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+            </ul>
+        </aside>
+
+        <!-- Conteúdo Principal -->
+        <div class="main-content">
+            <button class="filter-button" onclick="togglePopup()">Filtrar Alunos</button>
+
+            <!-- Pop-up de Filtro -->
+            <div class="popup" id="filter-popup">
+                <h3>Filtrar Alunos</h3>
+
+                <label for="nome">Nome do Aluno:</label>
+                <input type="text" id="nome" name="nome">
+
+                <label for="turma">Turma:</label>
+                <select id="turma" name="turma">
+                    <option value="">Selecione a Turma</option>
+                    <option value="Turma A">Turma A</option>
+                    <option value="Turma B">Turma B</option>
+                    <option value="Turma C">Turma C</option>
+                </select>
+
+                <label for="genero">Gênero:</label>
+                <select id="genero" name="genero">
+                    <option value="">Selecione o Gênero</option>
+                    <option value="Masculino">Masculino</option>
+                    <option value="Feminino">Feminino</option>
+                </select>
+
+                <button class="close-btn" onclick="togglePopup()">Fechar</button>
+            </div>
+
+            <!-- Tabela de Alunos -->
+            <h2>Alunos Cadastrados</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>CPF</th>
+                        <th>Email</th>
+                        <th>Data de Nascimento</th>
+                        <th>Gênero</th>
+                        <th>Turma</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Maria Silva</td>
+                        <td>123.456.789-00</td>
+                        <td>maria.silva@example.com</td>
+                        <td>12/03/2005</td>
+                        <td>Feminino</td>
+                        <td>Turma A</td>
+                    </tr>
+                    <tr>
+                        <td>João Souza</td>
+                        <td>987.654.321-00</td>
+                        <td>joao.souza@example.com</td>
+                        <td>15/05/2006</td>
+                        <td>Masculino</td>
+                        <td>Turma B</td>
+                    </tr>
+                    <tr>
+                        <td>Lucas Oliveira</td>
+                        <td>111.222.333-44</td>
+                        <td>lucas.oliveira@example.com</td>
+                        <td>20/08/2004</td>
+                        <td>Masculino</td>
+                        <td>Turma C</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
-    <!-- Rodapé -->
     <footer>
         <p>&copy; 2024 Sistema de Gerenciamento Escolar. Todos os direitos reservados.</p>
     </footer>
+
+    <!-- Script para abrir/fechar o pop-up -->
+    <script>
+        function togglePopup() {
+            const popup = document.getElementById('filter-popup');
+            popup.classList.toggle('active');
+        }
+    </script>
 </body>
 </html>
