@@ -1,0 +1,46 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Sistema Escolar{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <h1>Sistema de Gerenciamento Escolar</h1>
+    </header>
+
+    <!-- Menu Lateral -->
+    <aside class="sidebar">
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'cadastrar_aluno' %}">Cadastrar Aluno</a></li>
+            <li><a href="{% url 'lista_alunos' %}">Lista de Alunos</a></li>
+            <li><a href="{% url 'agendamento' %}">Agendamento</a></li>
+            <li><a href="{% url 'diario_turma' %}">Diário de Turma</a></li>
+            <li><a href="{% url 'faltas' %}">Controle de Faltas</a></li>
+            <li><a href="{% url 'login' %}">Login</a></li>
+        </ul>
+    </aside>
+
+    <!-- Conteúdo Principal -->
+    <div class="main-content">
+        {% block content %}
+        <!-- O conteúdo específico de cada página será injetado aqui -->
+        {% endblock %}
+    </div>
+
+    <!-- Script para menu responsivo -->
+    <script>
+        // Script para alternar a visibilidade do menu lateral em dispositivos móveis
+        function toggleMenu() {
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

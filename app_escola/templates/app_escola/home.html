@@ -1,53 +1,27 @@
-{% load static %}
+{% extends 'app_escola/base.html' %}
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-<body>
-    <header>
-        <h1>Bem-vindo ao Sistema de Gerenciamento Escolar</h1>
-    </header>
+{% block title %}Home{% endblock %}
 
-    <!-- Nome do Usuário Logado -->
-    <div class="user-info">
-        <p>Usuário Logado: <strong>Modesto Neto</strong></p>
+{% block content %}
+    <h2>Página Inicial</h2>
+    <div class="event-card">
+        <h3>Reunião de Pais</h3>
+        <p>Data: 12/09/2024, 14:00h</p>
+        <p>Local: Auditório Principal</p>
     </div>
-
-    <div class="container">
-        <!-- Menu Lateral -->
-        <aside class="sidebar">
-            <ul>
-                <li><a href="{% url 'cadastrar_aluno' %}">Cadastrar Aluno</a></li>
-                <li><a href="{% url 'lista_alunos' %}">Lista de Alunos</a></li>
-                <li><a href="{% url 'agendamento' %}">Agendamento</a></li>
-                <li><a href="{% url 'diario_turma' %}">Diário de Turma</a></li>
-                <li><a href="{% url 'faltas' %}">Controle de Faltas</a></li>
-                <li><a href="{% url 'login' %}">Sair</a></li>
-            </ul>
-        </aside>
-
-        <!-- Conteúdo Principal -->
-        <div class="main-content">
-            <!-- Preview da Agenda -->
-            <div class="agenda-preview">
-                <h2>Próximos Eventos da Agenda</h2>
-                <ul>
-                    <li><strong>Reunião de Pais</strong> - 12/09/2024, 14:00h</li>
-                    <li><strong>Palestra Motivacional</strong> - 15/09/2024, 10:00h</li>
-                    <li><strong>Prova de Matemática</strong> - 18/09/2024, 08:00h</li>
-                    <li><strong>Festa de Encerramento</strong> - 22/09/2024, 18:00h</li>
-                </ul>
-            </div>
-        </div>
+    <div class="event-card">
+        <h3>Palestra Motivacional</h3>
+        <p>Data: 15/09/2024, 10:00h</p>
+        <p>Local: Sala 101</p>
     </div>
-
-    <footer>
-        <p>&copy; 2024 Sistema de Gerenciamento Escolar. Todos os direitos reservados.</p>
-    </footer>
-</body>
-</html>
+    <div class="event-card">
+        <h3>Prova de Matemática</h3>
+        <p>Data: 18/09/2024, 08:00h</p>
+        <p>Local: Sala 305</p>
+    </div>
+    <div class="event-card">
+        <h3>Festa de Encerramento</h3>
+        <p>Data: 22/09/2024, 18:00h</p>
+        <p>Local: Quadra Poliesportiva</p>
+    </div>
+{% endblock %}

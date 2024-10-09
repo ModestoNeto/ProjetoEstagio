@@ -1,15 +1,15 @@
-/* style.css */
-
-/* Paleta de cores */
+/* Paleta de cores inspirada no tema "Neve" */
 :root {
-    --primary-color: #0056b3; /* Azul principal */
-    --primary-dark: #003d80; /* Azul mais escuro */
-    --primary-light: #669df6; /* Azul mais claro */
-    --background-color: #f1f4f8; /* Fundo suave */
-    --text-color: #333; /* Texto principal */
+    --primary-color: #1e90ff; /* Azul claro */
+    --primary-dark: #4169e1; /* Azul escuro */
+    --primary-light: #dfe6e9; /* Fundo claro */
+    --background-color: #f8f9fa; /* Fundo muito claro */
+    --text-color: #2c3e50; /* Texto escuro */
     --text-light: #fff; /* Texto claro */
-    --border-color: #e3e4e8; /* Cor de borda */
-    --accent-color: #ff6f61; /* Cor de destaque (vermelho/laranja) */
+    --border-color: #dfe6e9; /* Borda suave */
+    --accent-color: #48dbfb; /* Cor de destaque */
+    --event-card-bg: #f1f4f8; /* Fundo dos eventos */
+    --event-card-border: #e1e1e1; /* Borda dos eventos */
 }
 
 /* Reset básico */
@@ -31,204 +31,261 @@ body {
     min-height: 100vh; /* Altura mínima para o corpo */
 }
 
-/* Container Principal */
-.container {
-    display: flex;
-    margin-top: 20px; /* Espaçamento abaixo do header */
-    flex: 1; /* Ocupar o espaço disponível */
-}
-
-/* Sidebar (Menu lateral) */
-.sidebar {
-    width: 160px; /* Largura reduzida do menu lateral */
-    background-color: var(--primary-color);
-    color: var(--text-light);
-    position: fixed; /* Menu lateral fixo */
-    top: 0;
-    left: 0; /* Encosta o menu na lateral esquerda */
-    height: 100vh; /* Ocupa a altura completa da tela */
-    overflow-y: auto; /* Habilitar rolagem se necessário */
-    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.2);
-    border-radius: 0; /* Remover bordas arredondadas */
-    z-index: 1000; /* Ficar acima do conteúdo */
-    padding: 10px; /* Ajuste para espaço interno */
-}
-
-.sidebar ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-
-.sidebar ul li {
-    margin-bottom: 10px; /* Reduzir espaçamento entre opções */
-}
-
-.sidebar ul li a {
-    text-decoration: none;
-    color: var(--text-light);
-    font-size: 14px; /* Ajustar tamanho do texto */
-    padding: 12px 15px; /* Ajustar espaçamento interno */
-    display: block;
-    border-radius: 25px; /* Arredondar botões */
-    background-color: var(--primary-dark); /* Fundo nos botões */
-    text-align: center;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra nos botões */
-    transition: all 0.3s ease-in-out;
-}
-
-.sidebar ul li a:hover {
-    background-color: var(--accent-color); /* Cor de destaque ao passar o mouse */
-    color: var(--text-light);
-    transform: scale(1.05); /* Efeito de aumento ao passar o mouse */
-}
-
 /* Cabeçalho */
 header {
     background-color: var(--primary-color);
-    color: var(--text-light);
+    color: var(--background-color);
     padding: 20px;
     text-align: center;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     width: 100%;
 }
 
-/* Nome do usuário */
-.user-info {
-    text-align: right;
-    padding: 10px 20px;
-    font-size: 18px;
-    margin-left: 160px; /* Espaço ajustado para o menu lateral */
+/* Sidebar (Menu lateral) */
+.sidebar {
+    width: 220px;
+    background-color: var(--primary-dark);
+    color: var(--background-color);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    overflow-y: auto;
+    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
 }
 
-/* Conteúdo principal */
+.sidebar.active {
+    transform: translateX(-220px);
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: var(--background-color);
+    font-size: 16px;
+    padding: 15px 20px;
+    display: block;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.sidebar ul li a:hover {
+    background-color: var(--accent-color);
+    transform: translateX(5px); /* Efeito de deslizamento */
+}
+
+/* Conteúdo Principal */
 .main-content {
-    flex: 1;
+    margin-left: 220px;
     padding: 20px;
-    margin-left: 160px; /* Espaço ajustado para o menu lateral */
+    transition: margin-left 0.3s ease;
 }
 
-/* Botão de Filtro */
-.filter-button {
-    margin-bottom: 20px;
-    padding: 10px 15px;
-    background-color: var(--primary-color);
-    color: var(--text-light);
+/* Menu Responsivo */
+.menu-button {
+    display: none; /* Oculto em desktops */
+    background-color: var(--primary-dark);
+    color: var(--background-color);
+    padding: 10px 20px;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     font-size: 16px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    display: inline-block;
+    transition: background-color 0.3s ease;
 }
 
-.filter-button:hover {
-    background-color: var(--primary-dark);
-    transform: scale(1.05);
+.menu-button:hover {
+    background-color: var(--primary-color);
 }
 
-/* Pop-up de Filtro */
-.popup {
-    display: none; /* Escondido por padrão */
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 400px;
+/* Estilização dos eventos na página inicial */
+.event-card {
+    background-color: var(--event-card-bg); /* Cor de fundo clara */
+    border: 1px solid var(--event-card-border); /* Borda suave */
+    border-radius: 10px;
     padding: 20px;
-    background-color: var(--text-light);
+    margin: 10px 0;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    z-index: 1100; /* Ficar acima do restante */
+    transition: transform 0.3s ease;
 }
 
-.popup.active {
-    display: block; /* Mostrar quando ativo */
+.event-card h3 {
+    margin-bottom: 10px;
+    color: var(--primary-dark);
 }
 
-.popup h3 {
-    text-align: center;
-    margin-bottom: 20px;
+.event-card p {
+    color: var(--text-color);
 }
 
-.popup label {
-    display: block;
-    margin-bottom: 8px;
+.event-card:hover {
+    transform: translateY(-5px); /* Efeito de elevação */
 }
 
-.popup input,
-.popup select {
-    width: calc(100% - 20px);
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-}
-
-/* Botão de Fechar Pop-up */
-.popup .close-btn {
-    background-color: var(--accent-color);
-    color: var(--text-light);
-    border: none;
-    border-radius: 8px;
-    padding: 10px;
-    cursor: pointer;
-    float: right;
-}
-
-.popup .close-btn:hover {
-    background-color: var(--primary-dark);
-}
-
-/* Estilização da tabela */
-table {
-    width: 100%;
-    border-collapse: collapse;
+/* Tabelas e Formulários */
+table, form {
     margin: 20px 0;
+    padding: 20px;
+    background-color: var(--background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-table th,
-table td {
-    border: 1px solid var(--border-color);
-    padding: 12px;
-    text-align: center;
+table th, table td, form label {
+    padding: 10px;
+    text-align: left;
 }
 
 table th {
     background-color: var(--primary-color);
-    color: var(--text-light);
+    color: var(--background-color);
 }
 
-table tr:nth-child(even) {
-    background-color: var(--primary-light);
-}
-
-table tr:hover {
-    background-color: var(--primary-dark);
-    color: var(--text-light);
-}
-
-/* Rodapé (Footer) */
-footer {
-    background-color: var(--primary-dark);
-    color: var(--text-light);
+table td {
     text-align: center;
-    padding: 20px;
-    position: relative;
-    bottom: 0;
-    width: calc(100% - 160px); /* Espaço para o menu lateral */
-    margin-left: 160px; /* Ajuste para o menu lateral */
-    margin-top: auto; /* Mover o footer para o fim da página */
-    box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Links */
-a {
-    color: var(--primary-color);
-    text-decoration: none;
-    transition: color 0.3s ease-in-out;
+input, select, button {
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    width: 100%;
 }
 
-a:hover {
+input:focus, select:focus, button:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 8px var(--primary-light);
+}
+
+button {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+    background-color: var(--primary-dark);
+    transform: scale(1.05);
+}
+
+/* Estilização da Página de Login */
+.login-container {
+    max-width: 400px;
+    margin: 50px auto; /* Centralizar o formulário na tela */
+    padding: 30px;
+    background-color: var(--background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.login-container h2 {
+    margin-bottom: 20px;
     color: var(--primary-dark);
+}
+
+.login-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-container label {
+    margin-top: 15px;
+    font-weight: bold;
+    text-align: left;
+    width: 100%;
+}
+
+.login-container input {
+    width: calc(100% - 40px); /* Ajuste para incluir padding */
+    padding: 12px 20px;
+    margin: 10px 0;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    transition: border 0.3s ease;
+}
+
+.login-container input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 8px var(--primary-light);
+}
+
+.login-container button {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    width: 100%;
+}
+
+.login-container button:hover {
+    background-color: var(--primary-dark);
+    transform: scale(1.05);
+}
+
+/* Filtro oculto na lista de alunos */
+.filter-form {
+    display: none; /* Escondido por padrão */
+    background-color: var(--background-color);
+    padding: 20px;
+    margin: 20px 0;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.filter-form.show {
+    display: block; /* Mostrar quando ativo */
+    animation: slideDown 0.3s ease-in-out;
+}
+
+/* Animação para exibir o filtro */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-220px);
+    }
+    .sidebar.active {
+        transform: translateX(0);
+    }
+    .main-content {
+        margin-left: 0;
+    }
+    .menu-button {
+        display: block; /* Exibir o menu em dispositivos móveis */
+        margin: 20px;
+    }
 }

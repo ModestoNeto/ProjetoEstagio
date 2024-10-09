@@ -1,49 +1,23 @@
-{% load static %}
+{% extends 'app_escola/base.html' %}
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-<body>
-    <header>
-        <h1>Login do Sistema</h1>
-    </header>
+{% block title %}Login{% endblock %}
 
-    <div class="container">
-        <!-- Menu Lateral -->
-        <aside class="sidebar">
-            <ul>
-                <li><a href="{% url 'home' %}">Home</a></li>
-                <li><a href="{% url 'cadastrar_aluno' %}">Cadastrar Aluno</a></li>
-                <li><a href="{% url 'lista_alunos' %}">Lista de Alunos</a></li>
-                <li><a href="{% url 'agendamento' %}">Agendamento</a></li>
-                <li><a href="{% url 'diario_turma' %}">Diário de Turma</a></li>
-                <li><a href="{% url 'faltas' %}">Controle de Faltas</a></li>
-            </ul>
-        </aside>
+{% block content %}
+    <!-- Botão de menu responsivo para dispositivos móveis -->
+    <button class="menu-button" onclick="toggleMenu()">☰ Menu</button>
 
-        <!-- Conteúdo Principal -->
-        <div class="main-content">
-            <h2>Faça o Login</h2>
-            <form method="post">
-                {% csrf_token %}
-                <label for="username">Nome de Usuário:</label>
-                <input type="text" id="username" name="username" required>
+    <!-- Formulário de Login Centralizado -->
+    <div class="login-container">
+        <h2>Login no Sistema</h2>
+        <form method="post">
+            {% csrf_token %}
+            <label for="username">Nome de Usuário:</label>
+            <input type="text" id="username" name="username" required>
 
-                <label for="password">Senha:</label>
-                <input type="password" id="password" name="password" required>
+            <label for="password">Senha:</label>
+            <input type="password" id="password" name="password" required>
 
-                <button type="submit" class="btn">Entrar</button>
-            </form>
-        </div>
+            <button type="submit">Entrar</button>
+        </form>
     </div>
-
-    <footer>
-        <p>&copy; 2024 Sistema de Gerenciamento Escolar. Todos os direitos reservados.</p>
-    </footer>
-</body>
-</html>
+{% endblock %}
