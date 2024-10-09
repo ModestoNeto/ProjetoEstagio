@@ -3,20 +3,19 @@ import os
 from dotenv import load_dotenv
 from cryptography.fernet import Fernet
 
-# Carregar variáveis de ambiente do .env
+# Carregar as variáveis de ambiente do .env
 load_dotenv()
 
-# Diretório base do projeto
+# Caminho base do projeto
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Carregar a SECRET_KEY a partir do arquivo .env
+# Carregar a chave de criptografia a partir do .env
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # Verificar se a chave foi carregada corretamente
 if not SECRET_KEY:
     raise ValueError("A chave SECRET_KEY não foi encontrada no arquivo .env")
 
-# Instanciar a classe Fernet para usar a mesma SECRET_KEY como bytes para criptografia
 cipher_suite = Fernet(SECRET_KEY.encode())
 
 # Configurações gerais
@@ -91,27 +90,26 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# Configurações de localização
+# Configurações de internacionalização
 LANGUAGE_CODE = 'pt-br'
 TIME_ZONE = 'America/Fortaleza'
 USE_I18N = True
 USE_TZ = True
 
-# Configuração de arquivos estáticos
+# Configuração dos arquivos estáticos
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'app_escola' / 'static',
 ]
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# Configuração de arquivos de mídia
+# Configuração dos arquivos de mídia
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-# Configurações de redirecionamento para login e logout
+# Redirecionamento de login e logout
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'login'
 
-# Tipo de campo padrão para chaves primárias automáticas
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

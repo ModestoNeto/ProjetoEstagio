@@ -3,72 +3,53 @@
 {% block title %}Lista de Alunos{% endblock %}
 
 {% block content %}
+<div class="lista-alunos-container">
     <h2>Lista de Alunos</h2>
-    <button class="filter-button" onclick="toggleFilter()">Filtrar Alunos</button>
 
-    <!-- Formulário de Filtros Oculto -->
-    <div class="filter-form" id="filter-form">
-        <h3>Filtrar Alunos</h3>
-        <label for="nome">Nome do Aluno:</label>
-        <input type="text" id="nome" name="nome">
-
-        <label for="turma">Turma:</label>
-        <select id="turma" name="turma">
-            <option value="">Selecione a Turma</option>
-            <option value="Turma A">Turma A</option>
-            <option value="Turma B">Turma B</option>
-            <option value="Turma C">Turma C</option>
-        </select>
-
-        <label for="genero">Gênero:</label>
-        <select id="genero" name="genero">
-            <option value="">Selecione o Gênero</option>
-            <option value="Masculino">Masculino</option>
-            <option value="Feminino">Feminino</option>
-        </select>
-
-        <button class="close-btn" onclick="toggleFilter()">Fechar Filtros</button>
+    <!-- Filtro de Ano -->
+    <div class="filter-form">
+        <form method="GET" action="">
+            <label for="filter-year">Filtrar por Ano:</label>
+            <select id="filter-year" name="year">
+                <option value="">Selecione o Ano</option>
+                <option value="1">1º Ano</option>
+                <option value="2">2º Ano</option>
+                <option value="3">3º Ano</option>
+                <!-- Adicione mais anos conforme necessário -->
+            </select>
+            <button type="submit" class="menu-button">Filtrar</button>
+        </form>
     </div>
 
+    <!-- Tabela de Alunos -->
     <table>
         <thead>
             <tr>
                 <th>Nome</th>
                 <th>CPF</th>
-                <th>Telefone</th>
-                <th>Data de Nascimento</th>
                 <th>Gênero</th>
-                <th>Ano Escolar</th>
-                <th>Turma</th>
+                <th>Telefone</th>
+                <th>Ano</th>
+                <th>Faltas</th> <!-- Nova Coluna de Faltas -->
+                <th>Ações</th>
             </tr>
         </thead>
         <tbody>
+            <!-- Exemplo de linha de aluno (dados fictícios) -->
             <tr>
-                <td>Maria Silva</td>
+                <td>João Silva</td>
                 <td>123.456.789-00</td>
-                <td>(11) 91234-5678</td>
-                <td>12/03/2005</td>
-                <td>Feminino</td>
-                <td>2º Ano</td>
-                <td>Turma A</td>
-            </tr>
-            <tr>
-                <td>João Souza</td>
-                <td>987.654.321-00</td>
-                <td>(11) 98765-4321</td>
-                <td>15/05/2006</td>
                 <td>Masculino</td>
+                <td>(85) 99999-9999</td>
                 <td>3º Ano</td>
-                <td>Turma B</td>
+                <td>5</td> <!-- Campo de Faltas -->
+                <td>
+                    <button class="menu-button">Editar</button>
+                    <button class="menu-button">Deletar</button>
+                </td>
             </tr>
+            <!-- Outras linhas de alunos -->
         </tbody>
     </table>
-
-    <!-- Script para exibir/ocultar o filtro -->
-    <script>
-        function toggleFilter() {
-            const filterForm = document.getElementById('filter-form');
-            filterForm.classList.toggle('show');
-        }
-    </script>
+</div>
 {% endblock %}

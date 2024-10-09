@@ -3,6 +3,31 @@
 {% block title %}Diário de Turma{% endblock %}
 
 {% block content %}
+<div class="diario-turma-container">
     <h2>Diário de Turma</h2>
-    <p>Aqui você poderá visualizar o diário de turma e registrar informações importantes sobre a turma.</p>
+    <p>Aqui você pode gerenciar as informações do diário de turma.</p>
+    
+    <!-- Exemplo de estrutura de tabela para diário de turma -->
+    <table>
+        <thead>
+            <tr>
+                <th>Data</th>
+                <th>Matéria</th>
+                <th>Professor</th>
+                <th>Presenças</th>
+                <th>Faltas</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>01/10/2024</td>
+                <td>Matemática</td>
+                <td>João Silva</td>
+                <td>20</td>
+                <td>2</td>
+            </tr>
+            <!-- Outras linhas de exemplo -->
+        </tbody>
+    </table>
+</div>
 {% endblock %}
