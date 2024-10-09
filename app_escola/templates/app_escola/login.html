@@ -1,23 +1,35 @@
-{% extends 'app_escola/base.html' %}
-
-{% block title %}Login{% endblock %}
-
-{% block content %}
-    <!-- Botão de menu responsivo para dispositivos móveis -->
-    <button class="menu-button" onclick="toggleMenu()">☰ Menu</button>
-
-    <!-- Formulário de Login Centralizado -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
     <div class="login-container">
         <h2>Login no Sistema</h2>
         <form method="post">
             {% csrf_token %}
+            <!-- Nome de usuário -->
             <label for="username">Nome de Usuário:</label>
             <input type="text" id="username" name="username" required>
 
+            <!-- Senha -->
             <label for="password">Senha:</label>
             <input type="password" id="password" name="password" required>
 
+            <!-- Botão de Login -->
             <button type="submit">Entrar</button>
         </form>
+
+        <!-- Mensagem de erro de autenticação -->
+        {% if form.errors %}
+            <div class="error-message">
+                <p>Nome de usuário ou senha incorretos. Tente novamente.</p>
+            </div>
+        {% endif %}
     </div>
-{% endblock %}
+</body>
+</html>

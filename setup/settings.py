@@ -1,29 +1,29 @@
 from pathlib import Path
 import os
-from dotenv import load_dotenv  # Importar `load_dotenv` para carregar variáveis do .env
-from cryptography.fernet import Fernet  # Importar Fernet para gerenciar a criptografia
+from dotenv import load_dotenv
+from cryptography.fernet import Fernet
 
-# Carregar as variáveis do arquivo .env
+# Carregar variáveis de ambiente do .env
 load_dotenv()
 
-# Caminho base do projeto
+# Diretório base do projeto
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Carregar a chave de criptografia e secret key a partir do .env
-SECRET_KEY = os.getenv('SECRET_KEY')  # Carregar a SECRET_KEY do .env
+# Carregar a SECRET_KEY a partir do arquivo .env
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # Verificar se a chave foi carregada corretamente
 if not SECRET_KEY:
     raise ValueError("A chave SECRET_KEY não foi encontrada no arquivo .env")
 
-# Usar a mesma SECRET_KEY para instanciar o Fernet (cripto)
-cipher_suite = Fernet(SECRET_KEY.encode())  # Cria a instância Fernet usando a mesma chave como bytes
+# Instanciar a classe Fernet para usar a mesma SECRET_KEY como bytes para criptografia
+cipher_suite = Fernet(SECRET_KEY.encode())
 
-# Carregar outras variáveis de ambiente
-DEBUG = os.getenv('DEBUG', 'False') == 'True'  # Converte 'True'/'False' para valor booleano
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '127.0.0.1').split(',')  # Transforma a lista de hosts permitidos em lista Python
+# Configurações gerais
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '127.0.0.1').split(',')
 
-# Aplicativos instalados
+# Aplicações instaladas no projeto
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -31,10 +31,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app_escola',  # Aplicativo 'app_escola'
+    'app_escola',
 ]
 
-# Middlewares do Django
+# Middlewares
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -45,14 +45,14 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-# Configuração da URL principal
+# Configuração das URLs principais
 ROOT_URLCONF = 'setup.urls'
 
 # Configuração dos templates
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],  # Diretório de templates (opcional)
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -65,7 +65,6 @@ TEMPLATES = [
     },
 ]
 
-# Configuração de WSGI para o projeto
 WSGI_APPLICATION = 'setup.wsgi.application'
 
 # Configuração do banco de dados
@@ -92,26 +91,27 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# Configurações de localização e idioma
+# Configurações de localização
 LANGUAGE_CODE = 'pt-br'
 TIME_ZONE = 'America/Fortaleza'
 USE_I18N = True
 USE_TZ = True
 
-# Configuração dos arquivos estáticos
-STATIC_URL = '/static/'  # URL usada para servir os arquivos estáticos no navegador
-
-# Diretórios para buscar arquivos estáticos (CSS, JS, imagens)
+# Configuração de arquivos estáticos
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    BASE_DIR / 'app_escola' / 'static',  # Diretório onde estão os arquivos estáticos do app 'app_escola'
+    BASE_DIR / 'app_escola' / 'static',
 ]
-
-# Diretório onde os arquivos estáticos serão armazenados após executar `collectstatic`
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# Configuração do diretório de mídia (opcional)
+# Configuração de arquivos de mídia
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+# Configurações de redirecionamento para login e logout
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'login'
 
 # Tipo de campo padrão para chaves primárias automáticas
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

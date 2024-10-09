@@ -1,46 +1,38 @@
+# app_escola/views.py
+
 from django.shortcuts import render, redirect
-from .forms import AlunoForm
-from .models import Aluno
+from django.contrib.auth.decorators import login_required  # Decorator para proteger views
 
-# View para cadastrar um aluno e tokenizar o CPF
-def cadastrar_aluno(request):
-    if request.method == 'POST':
-        form = AlunoForm(request.POST)
-        if form.is_valid():
-            aluno = form.save(commit=False)
-            aluno.save()  # O CPF será salvo como um token
-            return redirect('lista_alunos')
-    else:
-        form = AlunoForm()
-    return render(request, 'app_escola/cadastrar_aluno.html', {'form': form})
-
-# View para listar todos os alunos e descriptografar o CPF para exibição
-def lista_alunos(request):
-    alunos = Aluno.objects.all()
-    for aluno in alunos:
-        aluno.cpf_decrypted = aluno.get_decrypted_cpf()  # Recupera o CPF descriptografado
-    return render(request, 'app_escola/lista_alunos.html', {'alunos': alunos})
-
-# View para exibir a página inicial
+# Página inicial (disponível apenas para usuários logados)
+@login_required
 def home(request):
-    return render(request, 'app_escola/home.html')  # Ajustado para o caminho correto do template
+    return render(request, 'app_escola/home.html')
 
-# View para gerenciar o login do usuário
-def login_view(request):
-    return render(request, 'app_escola/login.html')  # Ajustado para o caminho correto do template
+# Página de cadastro de aluno (disponível apenas para superusuários)
+@login_required
+def cadastrar_aluno(request):
+    if not request.user.is_superuser:  # Verifica se o usuário é um superusuário
+        return redirect('home')  # Redireciona para a home se não for superusuário
+    return render(request, 'app_escola/cadastrar_aluno.html')
 
-# View para exibir a página de agendamento de eventos
-def agendamento_view(request):
-    return render(request, 'app_escola/agendamento.html')  # Ajustado para o caminho correto do template
+# Lista de alunos (disponível apenas para superusuários)
+@login_required
+def lista_alunos(request):
+    if not request.user.is_superuser:  # Verifica se o usuário é um superusuário
+        return redirect('home')
+    return render(request, 'app_escola/lista_alunos.html')
 
-# View para exibir a página de diário de turma
-def diario_turma_view(request):
-    return render(request, 'app_escola/diario_turma.html')  # Ajustado para o caminho correto do template
+# Página de agendamento (disponível apenas para usuários logados)
+@login_required
+def agendamento(request):
+    return render(request, 'app_escola/agendamento.html')
 
-# View para exibir a página de controle de faltas
-def faltas_view(request):
-    return render(request, 'app_escola/faltas.html')  # Ajustado para o caminho correto do template
+# Diário de turma (disponível apenas para usuários logados)
+@login_required
+def diario_turma(request):
+    return render(request, 'app_escola/diario_turma.html')
 
-# View para gerenciar o logout do usuário
-def logout_view(request):
-    return redirect('home')
+# Controle de faltas (disponível apenas para usuários logados)
+@login_required
+def faltas(request):
+    return render(request, 'app_escola/faltas.html')

@@ -1,5 +1,4 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -17,13 +16,12 @@
     <!-- Menu Lateral -->
     <aside class="sidebar">
         <ul>
-            <li><a href="{% url 'home' %}">Home</a></li>
-            <li><a href="{% url 'cadastrar_aluno' %}">Cadastrar Aluno</a></li>
-            <li><a href="{% url 'lista_alunos' %}">Lista de Alunos</a></li>
-            <li><a href="{% url 'agendamento' %}">Agendamento</a></li>
-            <li><a href="{% url 'diario_turma' %}">Diário de Turma</a></li>
-            <li><a href="{% url 'faltas' %}">Controle de Faltas</a></li>
-            <li><a href="{% url 'login' %}">Login</a></li>
+            <li><a href="{% url 'home' %}" class="menu-button">Home</a></li>
+            <li><a href="{% url 'cadastrar_aluno' %}" class="menu-button">Cadastrar Aluno</a></li>
+            <li><a href="{% url 'lista_alunos' %}" class="menu-button">Lista de Alunos</a></li>
+            <li><a href="{% url 'agendamento' %}" class="menu-button">Agendamento</a></li>
+            <li><a href="{% url 'diario_turma' %}" class="menu-button">Diário de Turma</a></li>
+            <li><a href="{% url 'faltas' %}" class="menu-button">Controle de Faltas</a></li>
         </ul>
     </aside>
 
@@ -36,7 +34,6 @@
 
     <!-- Script para menu responsivo -->
     <script>
-        // Script para alternar a visibilidade do menu lateral em dispositivos móveis
         function toggleMenu() {
             const sidebar = document.querySelector('.sidebar');
             sidebar.classList.toggle('active');
