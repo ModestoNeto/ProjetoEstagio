@@ -3,34 +3,26 @@ import os
 from dotenv import load_dotenv
 from cryptography.fernet import Fernet
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-
-# Carregar as variáveis do arquivo .env
+# Carregar as variáveis de ambiente do .env
 load_dotenv()
 
+# Caminho base do projeto
+BASE_DIR = Path(__file__).resolve().parent.parent
+
 # Carregar a chave de criptografia a partir do .env
-CRYPTO_KEY = os.getenv('CRYPTO_KEY')
+SECRET_KEY = os.getenv('SECRET_KEY')
 
-# Verifique se a chave foi carregada corretamente
-if not CRYPTO_KEY:
-    raise ValueError("A chave de criptografia (CRYPTO_KEY) não foi encontrada no arquivo .env")
+# Verificar se a chave foi carregada corretamente
+if not SECRET_KEY:
+    raise ValueError("A chave SECRET_KEY não foi encontrada no arquivo .env")
 
-# Instanciar o Fernet com a chave carregada
-cipher_suite = Fernet(CRYPTO_KEY)
+cipher_suite = Fernet(SECRET_KEY.encode())
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
+# Configurações gerais
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '127.0.0.1').split(',')
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-yu(!=8y#((a9fuus)hej*zzb#$@%fe-93o2efq11on)gkd)9!('
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
-# Application definition
+# Aplicações instaladas no projeto
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -38,9 +30,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app_escola.apps.AppEscolaConfig',
+    'app_escola',
 ]
 
+# Middlewares
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -51,12 +44,14 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# Configuração das URLs principais
 ROOT_URLCONF = 'setup.urls'
 
+# Configuração dos templates
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -71,12 +66,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'setup.wsgi.application'
 
-# Diretório onde os arquivos estáticos serão armazenados
-STATIC_URL = '/static/'
-
-STATICFILES_DIRS = [BASE_DIR / "static"]
-
-# Database
+# Configuração do banco de dados
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -84,7 +74,7 @@ DATABASES = {
     }
 }
 
-# Password validation
+# Validação de senha
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -100,17 +90,26 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# Internationalization
+# Configurações de internacionalização
 LANGUAGE_CODE = 'pt-br'
-
 TIME_ZONE = 'America/Fortaleza'
-
 USE_I18N = True
-
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
-STATIC_URL = 'static/'
+# Configuração dos arquivos estáticos
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / 'app_escola' / 'static',
+]
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# Default primary key field type
+# Configuração dos arquivos de mídia
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+# Redirecionamento de login e logout
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'login'
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

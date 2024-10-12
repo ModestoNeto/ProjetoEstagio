@@ -1,21 +1,55 @@
-<h2>Lista de Alunos</h2>
-<table>
-    <thead>
-        <tr>
-            <th>Nome</th>
-            <th>CPF</th>
-            <th>Telefone</th>
-            <th>Endereço</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for aluno in alunos %}
-        <tr>
-            <td>{{ aluno.nome }}</td>
-            <td>{{ aluno.cpf_decrypted }}</td>  <!-- Exibe o CPF descriptografado -->
-            <td>{{ aluno.telefone }}</td>
-            <td>{{ aluno.endereco }}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+{% extends 'app_escola/base.html' %}
+
+{% block title %}Lista de Alunos{% endblock %}
+
+{% block content %}
+<div class="lista-alunos-container">
+    <h2>Lista de Alunos</h2>
+
+    <!-- Filtro de Ano -->
+    <div class="filter-form">
+        <form method="GET" action="">
+            <label for="filter-year">Filtrar por Ano:</label>
+            <select id="filter-year" name="year">
+                <option value="">Selecione o Ano</option>
+                <option value="1">1º Ano</option>
+                <option value="2">2º Ano</option>
+                <option value="3">3º Ano</option>
+                <!-- Adicione mais anos conforme necessário -->
+            </select>
+            <button type="submit" class="menu-button">Filtrar</button>
+        </form>
+    </div>
+
+    <!-- Tabela de Alunos -->
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Gênero</th>
+                <th>Telefone</th>
+                <th>Ano</th>
+                <th>Faltas</th> <!-- Nova Coluna de Faltas -->
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Exemplo de linha de aluno (dados fictícios) -->
+            <tr>
+                <td>João Silva</td>
+                <td>123.456.789-00</td>
+                <td>Masculino</td>
+                <td>(85) 99999-9999</td>
+                <td>3º Ano</td>
+                <td>5</td> <!-- Campo de Faltas -->
+                <td>
+                    <button class="menu-button">Editar</button>
+                    <button class="menu-button">Deletar</button>
+                </td>
+            </tr>
+            <!-- Outras linhas de alunos -->
+        </tbody>
+    </table>
+</div>
+{% endblock %}

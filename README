@@ -1,0 +1,41 @@
+ProjetoEstagio/
+│
+├── app_escola/                         # Aplicativo principal da escola
+│   ├── migrations/                     # Migrations para o banco de dados (geradas automaticamente)
+│   ├── static/                         # Diretório para arquivos estáticos (CSS, JS, imagens)
+│   │   └── app_escola/                 # Subdiretório de arquivos estáticos específicos do app
+│   │       └── css/
+│   │           └── style.css           # Arquivo de estilo para estilização das páginas HTML
+│   ├── templates/                      # Diretório para armazenar templates HTML
+│   │   └── app_escola/                 # Subdiretório de templates para o app `app_escola`
+│   │       ├── base.html               # Template base para herança (opcional)
+│   │       ├── login.html              # Página de login do sistema
+│   │       ├── home.html               # Página inicial (home) protegida por login
+│   │       ├── cadastrar_aluno.html    # Página de cadastro de alunos (protegida para superusuários)
+│   │       ├── lista_alunos.html       # Página de listagem de alunos (protegida para superusuários)
+│   │       ├── agendamento.html        # Página de agendamento de atividades
+│   │       ├── diario_turma.html       # Página para diário de turma
+│   │       └── faltas.html             # Página de controle de faltas dos alunos
+│   ├── __init__.py                     # Arquivo de inicialização do app Django
+│   ├── admin.py                        # Configurações para o Django Admin
+│   ├── apps.py                         # Configurações do aplicativo
+│   ├── models.py                       # Definição dos modelos (tabelas do banco de dados)
+│   ├── tests.py                        # Testes para o app
+│   ├── urls.py                         # Arquivo de URLs específicas do app `app_escola`
+│   └── views.py                        # Definição das views (lógica de exibição e redirecionamento)
+│
+├── setup/                              # Diretório principal de configuração do projeto Django
+│   ├── __init__.py                     # Arquivo de inicialização do projeto Django
+│   ├── settings.py                     # Configurações principais do projeto (SECRET_KEY, apps, etc.)
+│   ├── urls.py                         # URLs principais do projeto (inclui URLs do `app_escola`)
+│   ├── wsgi.py                         # Configuração para WSGI (servidor web)
+│   └── asgi.py                         # Configuração para ASGI (servidor web assíncrono)
+│
+├── .env                                # Arquivo de variáveis de ambiente (.env)
+├── db.sqlite3                          # Arquivo do banco de dados SQLite (gerado automaticamente)
+├── manage.py                           # Arquivo de gerenciamento do projeto Django
+└── README.md                           # Arquivo opcional para documentação do projeto (opcional)
+
+
+  *Para executar instale o requirements.txt
+  source 'nome da sua vm'/bin/

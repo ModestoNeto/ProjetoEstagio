@@ -1,0 +1,361 @@
+/* Paleta de cores inspirada no tema "Neve" */
+:root {
+    --primary-color: #1e90ff; /* Azul claro */
+    --primary-dark: #4169e1; /* Azul escuro */
+    --primary-light: #dfe6e9; /* Fundo claro */
+    --background-color: #f8f9fa; /* Fundo muito claro */
+    --text-color: #2c3e50; /* Texto escuro */
+    --text-light: #fff; /* Texto claro */
+    --border-color: #dfe6e9; /* Borda suave */
+    --accent-color: #48dbfb; /* Cor de destaque */
+    --event-card-bg: #f1f4f8; /* Fundo dos eventos */
+    --event-card-border: #e1e1e1; /* Borda dos eventos */
+}
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Corpo e fundo */
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-size: 16px;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Altura mínima para o corpo */
+}
+
+/* Cabeçalho */
+header {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+/* Sidebar (Menu lateral) */
+.sidebar {
+    width: 220px;
+    background-color: var(--primary-dark);
+    color: var(--background-color);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    overflow-y: auto;
+    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 10px;
+}
+
+.sidebar ul li a,
+.sidebar ul li button {
+    text-decoration: none;
+    color: var(--background-color);
+    font-size: 16px;
+    padding: 15px 20px;
+    display: block;
+    border-radius: 8px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.sidebar ul li a:hover,
+.sidebar ul li button:hover {
+    background-color: var(--accent-color);
+    transform: translateX(5px); /* Efeito de deslizamento */
+}
+
+/* Conteúdo Principal */
+.main-content {
+    margin-left: 220px;
+    padding: 20px;
+    transition: margin-left 0.3s ease;
+}
+
+/* Menu Responsivo */
+.menu-button {
+    display: none; /* Oculto em desktops */
+    background-color: var(--primary-dark);
+    color: var(--background-color);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.menu-button:hover {
+    background-color: var(--primary-color);
+}
+
+/* Estilização dos eventos na página inicial */
+.event-card {
+    background-color: var(--event-card-bg); /* Cor de fundo clara */
+    border: 1px solid var(--event-card-border); /* Borda suave */
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px 0;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.event-card h3 {
+    margin-bottom: 10px;
+    color: var(--primary-dark);
+}
+
+.event-card p {
+    color: var(--text-color);
+}
+
+.event-card:hover {
+    transform: translateY(-5px); /* Efeito de elevação */
+}
+
+/* Tabelas e Formulários */
+table, form {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: var(--background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+table th, table td, form label {
+    padding: 10px;
+    text-align: left;
+}
+
+table th {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+}
+
+table td {
+    text-align: center;
+}
+
+input, select, button {
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    width: 100%;
+}
+
+input:focus, select:focus, button:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 8px var(--primary-light);
+}
+
+button {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+    background-color: var(--primary-dark);
+    transform: scale(1.05);
+}
+
+/* Estilização da Página de Login */
+.login-container {
+    max-width: 400px;
+    margin: 50px auto; /* Centralizar o formulário na tela */
+    padding: 30px;
+    background-color: var(--background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.login-container h2 {
+    margin-bottom: 20px;
+    color: var(--primary-dark);
+}
+
+.login-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-container label {
+    margin-top: 15px;
+    font-weight: bold;
+    text-align: left;
+    width: 100%;
+}
+
+.login-container input {
+    width: calc(100% - 40px); /* Ajuste para incluir padding */
+    padding: 12px 20px;
+    margin: 10px 0;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    transition: border 0.3s ease;
+}
+
+.login-container input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 8px var(--primary-light);
+}
+
+.login-container button {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    width: 100%;
+}
+
+.login-container button:hover {
+    background-color: var(--primary-dark);
+    transform: scale(1.05);
+}
+
+/* Filtro oculto na lista de alunos */
+.filter-form {
+    margin-bottom: 20px;
+}
+
+.filter-form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.filter-form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+}
+
+.filter-form button {
+    padding: 12px 20px;
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.filter-form button:hover {
+    background-color: var(--primary-dark);
+    transform: scale(1.05);
+}
+
+/* Tabelas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    padding: 12px;
+    border: 1px solid var(--border-color);
+}
+
+table th {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+}
+
+table td {
+    text-align: center;
+}
+
+/* Estilo para a página de perfil */
+.perfil-container {
+    background-color: var(--background-color);
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+    text-align: center;
+}
+
+.perfil-container h2 {
+    margin-bottom: 20px;
+    color: var(--primary-dark);
+}
+
+.perfil-container p {
+    color: var(--text-color);
+    margin-bottom: 30px;
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;  /* Espaçamento entre os botões */
+}
+
+.perfil-button {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;  /* Remove sublinhado */
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.perfil-button:hover {
+    background-color: var(--primary-dark);
+    transform: scale(1.05);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-220px);
+    }
+    .sidebar.active {
+        transform: translateX(0);
+    }
+    .main-content {
+        margin-left: 0;
+    }
+    .menu-button {
+        display: block; /* Exibir o menu em dispositivos móveis */
+        margin: 20px;
+    }
+}

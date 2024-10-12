@@ -1,44 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Aluno</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+{% extends 'app_escola/base.html' %}
 
-        
-</head>
-<body>
-    <div class="container">
-        <div class="header">
-            <img src="{% static 'images/home-icon.png' %}" alt="Home" class="home-icon">
-            <h1>Cadastro de Aluno</h1>
-        </div>
-        <form action="{% url 'cadastrar_aluno' %}" method="POST">
-            {% csrf_token %}
-            <label for="nome">Digite o nome do aluno</label>
-            <input type="text" id="nome" name="nome_aluno" required>
+{% block title %}Cadastrar Aluno{% endblock %}
 
-            <label for="cpf">Digite o CPF do aluno</label>
-            <input type="text" id="cpf" name="cpf_aluno" required>
+{% block content %}
+    <h2>Cadastrar Novo Aluno</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label for="nome">Nome Completo:</label>
+        <input type="text" id="nome" name="nome" required>
 
-            <label for="endereco">Digite o endereço do aluno</label>
-            <input type="text" id="endereco" name="endereco_aluno" required>
+        <label for="cpf">CPF:</label>
+        <input type="text" id="cpf" name="cpf" required>
 
-            <label for="telefone">Informe o número para contato</label>
-            <input type="text" id="telefone" name="telefone_aluno" required>
+        <label for="telefone">Telefone:</label>
+        <input type="tel" id="telefone" name="telefone" placeholder="(XX) XXXXX-XXXX" required>
 
-            <div class="gender-options">
-                <label>Selecione o gênero:</label>
-                <label><input type="radio" name="genero" value="masculino" required> Masculino</label>
-                <label><input type="radio" name="genero" value="feminino" required> Feminino</label>
-            </div>
+        <label for="data_nascimento">Data de Nascimento:</label>
+        <input type="date" id="data_nascimento" name="data_nascimento" required>
 
-            <button type="submit" class="submit-btn">Cadastrar o Aluno</button>
-        </form>
-    </div>
-    <a href="{% url 'cadastrar_aluno' %}">Cadastrar novo aluno</a>
-</body>
-</html>
+        <label for="genero">Gênero:</label>
+        <select id="genero" name="genero">
+            <option value="Masculino">Masculino</option>
+            <option value="Feminino">Feminino</option>
+            <option value="Outro">Outro</option>
+        </select>
+
+        <label for="ano_escolar">Ano Escolar:</label>
+        <select id="ano_escolar" name="ano_escolar">
+            <option value="1º Ano">1º Ano</option>
+            <option value="2º Ano">2º Ano</option>
+            <option value="3º Ano">3º Ano</option>
+        </select>
+
+        <label for="turma">Turma:</label>
+        <select id="turma" name="turma">
+            <option value="Turma A">Turma A</option>
+            <option value="Turma B">Turma B</option>
+            <option value="Turma C">Turma C</option>
+        </select>
+
+        <button type="submit">Cadastrar</button>
+    </form>
+{% endblock %}
