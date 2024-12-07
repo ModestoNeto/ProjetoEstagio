@@ -51,7 +51,6 @@ Siga os passos abaixo para rodar o projeto localmente:
 
 7. O servidor estará disponível em: [http://127.0.0.1:8000/](http://127.0.0.1:8000/).
 
-    Você pode acessar o painel de administração do Django em: [http://127.0.0.1:8000/admin](http://127.0.0.1:8000/admin).
 
 8. Acesse o sistema usando:
     ```bash
