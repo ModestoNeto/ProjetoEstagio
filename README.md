@@ -43,23 +43,17 @@ Siga os passos abaixo para rodar o projeto localmente:
     python manage.py migrate
     ```
 
-6. Crie um superusuário para acessar o painel de administração:
-
-    ```bash
-    python manage.py createsuperuser
-    ```
-
-7. Execute o servidor local:
+6. Execute o servidor local:
 
     ```bash
     python manage.py runserver
     ```
 
-8. O servidor estará disponível em: [http://127.0.0.1:8000/](http://127.0.0.1:8000/).
+7. O servidor estará disponível em: [http://127.0.0.1:8000/](http://127.0.0.1:8000/).
 
     Você pode acessar o painel de administração do Django em: [http://127.0.0.1:8000/admin](http://127.0.0.1:8000/admin).
 
-9. Acesse o sistema usando:
+8. Acesse o sistema usando:
     ```bash
     user = adm
     senha = adm
