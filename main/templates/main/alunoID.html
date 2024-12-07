@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %} Detalhes do Aluno {% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>{{ aluno.nome }}</h1>
+    
+    <p><strong>Descrição:</strong> {{ aluno.description }}</p>
+    
+    <p><strong>Telefone:</strong> {{ aluno.telefone }}</p>
+    <p><strong>Email:</strong> {{ aluno.email }}</p>
+    <p><strong>Data de Nascimento:</strong> {{ aluno.data_nascimento }}</p>
+    <p><strong>CPF:</strong> {{ aluno.decrypted_cpf }}</p> 
+
+    <p><strong>Série:</strong> {{ aluno.serie }}</p>
+    <p><strong>Turma:</strong> {{ aluno.turma }}</p>
+</div>
+{% endblock %}

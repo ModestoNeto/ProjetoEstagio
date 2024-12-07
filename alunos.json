@@ -1,0 +1,142 @@
+[
+    {
+        "model": "main.aluno",
+        "pk": 1,
+        "fields": {
+            "nome": "Lucas Alves",
+            "telefone": "(86) 99877-1234",
+            "email": "lucasalves@example.com",
+            "data_nascimento": "2005-04-23",
+            "cpf": "12345678901",
+            "user": 1,
+            "serie": "1º Ano",
+            "turma": "A"
+        }
+    },
+    {
+        "model": "main.aluno",
+        "pk": 2,
+        "fields": {
+            "nome": "Maria Oliveira",
+            "telefone": "(86) 98765-4321",
+            "email": "mariaoliveira@example.com",
+            "data_nascimento": "2004-08-15",
+            "cpf": "23456789012",
+            "user": 1,
+            "serie": "2º Ano",
+            "turma": "B"
+        }
+    },
+    {
+        "model": "main.aluno",
+        "pk": 3,
+        "fields": {
+            "nome": "João Pereira",
+            "telefone": "(86) 97654-3210",
+            "email": "joaopereira@example.com",
+            "data_nascimento": "2006-12-11",
+            "cpf": "34567890123",
+            "user": 1,
+            "serie": "3º Ano",
+            "turma": "C"
+        }
+    },
+    {
+        "model": "main.aluno",
+        "pk": 4,
+        "fields": {
+            "nome": "Ana Santos",
+            "telefone": "(86) 96543-2109",
+            "email": "anasantos@example.com",
+            "data_nascimento": "2005-03-30",
+            "cpf": "45678901234",
+            "user": 1,
+            "serie": "1º Ano",
+            "turma": "A"
+        }
+    },
+    {
+        "model": "main.aluno",
+        "pk": 5,
+        "fields": {
+            "nome": "Carlos Lima",
+            "telefone": "(86) 95432-1098",
+            "email": "carloslima@example.com",
+            "data_nascimento": "2007-07-29",
+            "cpf": "56789012345",
+            "user": 1,
+            "serie": "2º Ano",
+            "turma": "B"
+        }
+    },
+    {
+        "model": "main.aluno",
+        "pk": 6,
+        "fields": {
+            "nome": "Paula Martins",
+            "telefone": "(86) 94321-0987",
+            "email": "paulamartins@example.com",
+            "data_nascimento": "2004-11-18",
+            "cpf": "67890123456",
+            "user": 1,
+            "serie": "3º Ano",
+            "turma": "C"
+        }
+    },
+    {
+        "model": "main.aluno",
+        "pk": 7,
+        "fields": {
+            "nome": "Eduardo Silva",
+            "telefone": "(86) 93210-9876",
+            "email": "eduardosilva@example.com",
+            "data_nascimento": "2006-05-22",
+            "cpf": "78901234567",
+            "user": 1,
+            "serie": "1º Ano",
+            "turma": "A"
+        }
+    },
+    {
+        "model": "main.aluno",
+        "pk": 8,
+        "fields": {
+            "nome": "Fernanda Costa",
+            "telefone": "(86) 92109-8765",
+            "email": "fernandacosta@example.com",
+            "data_nascimento": "2005-09-03",
+            "cpf": "89012345678",
+            "user": 1,
+            "serie": "2º Ano",
+            "turma": "B"
+        }
+    },
+    {
+        "model": "main.aluno",
+        "pk": 9,
+        "fields": {
+            "nome": "Ricardo Souza",
+            "telefone": "(86) 91098-7654",
+            "email": "ricardosouza@example.com",
+            "data_nascimento": "2004-01-11",
+            "cpf": "90123456789",
+            "user": 1,
+            "serie": "3º Ano",
+            "turma": "C"
+        }
+    },
+    {
+        "model": "main.aluno",
+        "pk": 10,
+        "fields": {
+            "nome": "Isabela Rocha",
+            "telefone": "(86) 90987-6543",
+            "email": "isabelarocha@example.com",
+            "data_nascimento": "2007-06-12",
+            "cpf": "01234567890",
+            "user": 1,
+            "serie": "1º Ano",
+            "turma": "A"
+        }
+    }
+]

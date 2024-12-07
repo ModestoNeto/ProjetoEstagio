@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container">
+    <h2>{% if form.instance.id %}Editar Aluno{% else %}Criar Aluno{% endif %}</h2>
+    
+    <form method="post">
+      {% csrf_token %}
+      
+      <!-- Exibindo erros de forma explícita -->
+      <div class="form-errors">
+        {% for field in form %}
+          {% if field.errors %}
+            <div class="alert alert-danger">
+              <ul>
+                {% for error in field.errors %}
+                  <li>{{ error }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      <!-- Campos do formulário -->
+      <div class="form-group">
+        <label for="{{ form.nome.id_for_label }}">Nome</label>
+        {{ form.nome }}
+      </div>
+      
+      <div class="form-group">
+        <label for="{{ form.telefone.id_for_label }}">Telefone</label>
+        {{ form.telefone }}
+      </div>
+
+      <div class="form-group">
+        <label for="{{ form.email.id_for_label }}">E-mail</label>
+        {{ form.email }}
+      </div>
+
+      <div class="form-group">
+        <label for="{{ form.data_nascimento.id_for_label }}">Data de Nascimento</label>
+        {{ form.data_nascimento }}
+      </div>
+
+      <div class="form-group">
+        <label for="{{ form.cpf.id_for_label }}">CPF</label>
+        {{ form.cpf }}
+      </div>
+
+      <div class="form-group">
+        <label for="{{ form.serie.id_for_label }}">Série</label>
+        {{ form.serie }}
+      </div>
+
+      <div class="form-group">
+        <label for="{{ form.turma.id_for_label }}">Turma</label>
+        {{ form.turma }}
+      </div>
+
+      <!-- Botão de envio -->
+      <button type="submit" class="btn btn-primary">
+        {% if form.instance.id %} Atualizar Aluno {% else %} Criar Aluno {% endif %}
+      </button>
+    </form>
+
+    <!-- Link para voltar -->
+    <a href="{% url 'aluno_view' %}" class="btn btn-secondary mt-3">Voltar para a lista de alunos</a>
+  </div>
+{% endblock %}
